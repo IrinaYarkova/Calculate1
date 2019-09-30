@@ -47,8 +47,7 @@ public class Calculate {
                 result = Div.div(number1, number2);
                 printResult(number1, number2, operator, result);
             } catch (DivNullException e){
-                System.out.println(e.getTextException());
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         } else  {
             throw new Exception("Неизвестный оператор!");
