@@ -31,26 +31,28 @@ public class Calculate {
 
     }
 
-    public static void getResult(float number1, float number2, String operator) throws Exception {
+    public static void getResult(float number1, float number2, String operator) throws OperatorException {
         float result;
-        if (operator.equals(Add.getName())){
-            result = Add.add(number1, number2);
-            printResult(number1, number2, operator, result);
-        } else  if (operator.equals(Sub.getName())){
-            result = Sub.subtract(number1, number2);
-            printResult(number1, number2, operator, result);
-        } else if (operator.equals(Mul.getName())){
-            result = Mul.multiply(number1, number2);
-            printResult(number1, number2, operator, result);
-        } else if (operator.equals(Div.getName())){
-            try {
-                result = Div.div(number1, number2);
+        try {
+            if (operator.equals(Add.getName())) {
+                result = Add.add(number1, number2);
                 printResult(number1, number2, operator, result);
-            } catch (DivNullException e){
-                System.out.println(e.getMessage());
-            }
-        } else  {
-            throw new Exception("Неизвестный оператор!");
+            } else if (operator.equals(Sub.getName())) {
+                result = Sub.subtract(number1, number2);
+                printResult(number1, number2, operator, result);
+            } else if (operator.equals(Mul.getName())) {
+                result = Mul.multiply(number1, number2);
+                printResult(number1, number2, operator, result);
+            } else if (operator.equals(Div.getName())) {
+                try {
+                    result = Div.div(number1, number2);
+                    printResult(number1, number2, operator, result);
+                } catch (DivNullException e) {
+                    System.out.println(e.getMessage());
+                }
+            } else throw new OperatorException();
+        } catch (OperatorException e){
+            System.out.println(e.getMessage());
         }
     }
 
